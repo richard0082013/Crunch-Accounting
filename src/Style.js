@@ -61,6 +61,10 @@ export const Styles = styled.div`
     margin-left: 5px;
   }
 
+  .saved {
+    font-size: 32px;
+  }
+
   
 
 

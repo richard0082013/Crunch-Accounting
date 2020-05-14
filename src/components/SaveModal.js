@@ -1,7 +1,8 @@
 import React from 'react';
 import { Backdrop, Modal, Grid} from '@material-ui/core';
 import { Close, Check } from '@material-ui/icons';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import CustomDetails from './CustomDetails'
 
 const OutterWrapper = styled.div`
   background: #fff;
@@ -9,9 +10,25 @@ const OutterWrapper = styled.div`
   height: 100%;
   overflow: auto;
 `;
+const ContentWrapper = styled.div`
+  padding: 32px;
+`;
+
+const SavedText = styled.span`
+  font-size: 32px;
+  margin-right: 10px;
+`;
+const DetailText = styled.p`
+  font-size: 14px;
+  color: #827f7f;
+`;
+const Heading = styled.h1`
+    text-align: left;
+    color: #e0904a;
+    font-size: 24px;
+`
 
 const SaveModal = ({ isModalShown, onClose, formValue}) =>{ 
-console.log("SaveModal -> formValue", formValue)
   return (
   <Modal
     open={isModalShown}
@@ -20,165 +37,129 @@ console.log("SaveModal -> formValue", formValue)
     BackdropComponent={Backdrop}
     BackdropProps={{ timeout: 500 }}
   >
+
     <OutterWrapper>
+      <ContentWrapper>
+        {/* close button */}
       <Grid
         container
         direction="row"
         justify="flex-end"
         alignItems="center"
-        style={{ padding: '32px' }}
       >
         <Grid item><Close onClick={onClose} /></Grid>
+      </Grid> 
+      {/* saved content */}
+      <Grid container>
+      <Grid item xs={12}>
+          <SavedText>Saved</SavedText><span><Check style={{ color: 'green' }} /></span>
+        </Grid>
+      <Grid item xs={12}>
+          <DetailText>The contact details have been saved</DetailText>
+        </Grid>
       </Grid>
+      {/* contact detail */}
       <Grid
-        container
-        direction="row"
-        justify="flex-start"
-        alignItems="center"
-        style={{ padding: '32px' }}
-      >
-        <Grid item><h3>Saved</h3><Check style={{ display: 'inline-block', color: 'green' }} /><p>The contact details has been saved</p></Grid>
-      </Grid>
-      <Grid container direction="row"
-        justify="center"
-        alignItems="center"
-        style={{ padding: '32px' }} >
-        <Grid container item  direction="row"
-        justify="flex-start"
-        alignItems="center"><Grid item><h3>Contact Information</h3></Grid></Grid>
-        <Grid container item direction="row"
-          justify="flex-start"
-          alignItems="center" 
-          xs={12} sm={6}>
-            <Grid container item direction="row"
-            justify="flex-end"
-            alignItems="center" xs={12} sm={6}>
-            <Grid item style={{paddingRight:'24px'}}>First Name:</Grid>
-            </Grid>
-            <Grid container item direction="row"
-            justify="flex-start"
-            alignItems="center" xs={12} sm={6}>
-            <Grid item style={{paddingLeft:'24px'}}>{formValue.firstName}</Grid>
-            </Grid>
-        </Grid>
-        <Grid container item direction="row" justify="flex-start" alignItems="center" xs={12} sm={6} >
-            <Grid container item direction="row" justify="flex-end" alignItems="center" xs={12} sm={6}>
-              <Grid item style={{paddingRight:'24px'}}>Last Name:</Grid>
-            </Grid>
-            <Grid container item direction="row" justify="flex-start" alignItems="center" xs={12} sm={6}>
-              <Grid item style={{paddingLeft:'24px'}}>{formValue.lastName}</Grid>
-            </Grid>
-        </Grid>
-        <Grid container item direction="row"
-          justify="flex-start"
-          alignItems="center" 
-          xs={12} sm={6}>
-            <Grid container item direction="row"
-            justify="flex-end"
-            alignItems="center" xs={12} sm={6}>
-            <Grid item style={{paddingRight:'24px'}}>Account Name:</Grid>
-            </Grid>
-            <Grid container item direction="row"
-            justify="flex-start"
-            alignItems="center" xs={12} sm={6}>
-            <Grid item style={{paddingLeft:'24px'}}>{formValue.accountName}</Grid>
-            </Grid>
-        </Grid>
-        <Grid container item direction="row" justify="flex-start" alignItems="center" xs={12} sm={6} >
-            <Grid container item direction="row" justify="flex-end" alignItems="center" xs={12} sm={6}>
-              <Grid item style={{paddingRight:'24px'}}>Company Name:</Grid>
-            </Grid>
-            <Grid container item direction="row" justify="flex-start" alignItems="center" xs={12} sm={6}>
-              <Grid item style={{paddingLeft:'24px'}}>{formValue.companyName}</Grid>
-            </Grid>
-        </Grid>
-        <Grid container item direction="row"
-          justify="flex-start"
-          alignItems="center" 
-          xs={12} sm={6}>
-            <Grid container item direction="row"
-            justify="flex-end"
-            alignItems="center" xs={12} sm={6}>
-            <Grid item style={{paddingRight:'24px'}}>Phone:</Grid>
-            </Grid>
-            <Grid container item direction="row"
-            justify="flex-start"
-            alignItems="center" xs={12} sm={6}>
-            <Grid item style={{paddingLeft:'24px'}}>{formValue.phone}</Grid>
-            </Grid>
-        </Grid>
-        <Grid container item direction="row" justify="flex-start" alignItems="center" xs={12} sm={6} >
-            <Grid container item direction="row" justify="flex-end" alignItems="center" xs={12} sm={6}>
-              <Grid item style={{paddingRight:'24px'}}>Fax:</Grid>
-            </Grid>
-            <Grid container item direction="row" justify="flex-start" alignItems="center" xs={12} sm={6}>
-              <Grid item style={{paddingLeft:'24px'}}>{formValue.fax}</Grid>
-            </Grid>
-        </Grid>
-        <Grid container item direction="row"
-          justify="flex-start"
-          alignItems="center" 
-          xs={12} sm={6}>
-            <Grid container item direction="row"
-            justify="flex-end"
-            alignItems="center" xs={12} sm={6}>
-            <Grid item style={{paddingRight:'24px'}}>Title:</Grid>
-            </Grid>
-            <Grid container item direction="row"
-            justify="flex-start"
-            alignItems="center" xs={12} sm={6}>
-            <Grid item style={{paddingLeft:'24px'}}>{formValue.jobTitle}</Grid>
-            </Grid>
-        </Grid>
-        <Grid container item direction="row" justify="flex-start" alignItems="center" xs={12} sm={6} >
-            <Grid container item direction="row" justify="flex-end" alignItems="center" xs={12} sm={6}>
-              <Grid item style={{paddingRight:'24px'}}>Email:</Grid>
-            </Grid>
-            <Grid container item direction="row" justify="flex-start" alignItems="center" xs={12} sm={6}>
-              <Grid item style={{paddingLeft:'24px'}}>{formValue.email}</Grid>
-            </Grid>
-        </Grid>
-        <Grid container item direction="row"
-          justify="flex-start"
-          alignItems="center" 
-          xs={12} sm={6}>
-            <Grid container item direction="row"
-            justify="flex-end"
-            alignItems="center" xs={12} sm={6}>
-            {formValue.emailOptOut && <Grid item style={{paddingRight:'24px'}}>Email Opt Out</Grid>}
-            </Grid>
-            <Grid container item direction="row"
-            justify="flex-start"
-            alignItems="center" xs={12} sm={6} />  
-        </Grid>
-        <Grid container item direction="row" justify="flex-start" alignItems="center" xs={12} sm={6} />
-      </Grid>
-
-
-
-      <Grid container direction="row"
-        justify="flex-start"
-        alignItems="center"
-        style={{ padding: '32px' }} >
-        <Grid container item  direction="row"
-        justify="flex-start"
-        alignItems="center"><Grid item><h3>Description Information</h3></Grid></Grid>
-        <Grid container item direction="row"
-          justify="flex-start"
-          alignItems="center" 
-          xs={12} sm={12}>
-            <Grid container item direction="row"
-            justify="flex-end"
-            alignItems="center" xs={12} sm={3}>
-            <Grid item style={{paddingRight:'24px'}}>Description</Grid>
-            </Grid>
-            <Grid container item direction="row"
-            justify="flex-start"
-            alignItems="center" xs={12} sm={9}>
-            <Grid item style={{paddingLeft:'24px'}}>{formValue.description}</Grid>
-            </Grid>
-        </Grid>
-      </Grid>
+                  container
+                  item
+                  direction="column"
+                  justify="flex-start"
+                  alignItems="center"
+                >
+                  <Grid
+                    container
+                    item
+                    direction="row"
+                    justify="flex-start"
+                    alignItems="center"
+                  >
+                    <Heading>Contact information</Heading>
+                  </Grid>
+                  <Grid container item direction="row"
+                    justify="center"
+                    alignItems="center">                   
+                      <CustomDetails label='First Name' value={formValue.firstName}/>                    
+                    <CustomDetails label='Last Name' value={formValue.lastName}/>                  
+                  </Grid>
+                  <Grid container item direction="row"
+                    justify="center"
+                    alignItems="center">                    
+                    <CustomDetails label='Account Name' value={formValue.accountName}/>                                     
+                    <CustomDetails label='Company Name' value={formValue.companyName || 'N/A'}/>                  
+                  </Grid>
+                  <Grid container item direction="row"
+                    justify="center"
+                    alignItems="center">                   
+                    <CustomDetails label='Phone' value={formValue.phone}/>
+                    <CustomDetails label='Fax' value={formValue.fax || 'N/A'}/>     
+                  </Grid>
+                  <Grid container item direction="row"
+                    justify="center"
+                    alignItems="center">                   
+                    <CustomDetails label='Title' value={formValue.jobTitle || 'N/A'}/>                   
+                    <CustomDetails label='Email' value={formValue.email}/>                 
+                  </Grid>
+                  {formValue.emailOptOut&&<Grid container item direction="row"
+                    justify="flex-start"
+                    alignItems="center">                   
+                      <CustomDetails label='Email Opt Out' value={formValue.emailOptOut}/>                   
+                  </Grid>}
+                </Grid>
+                {/* address details */}
+                <Grid
+                  container
+                  item
+                  direction="column"
+                  justify="center"
+                  alignItems="center"
+                >
+                  <Grid
+                    container
+                    item
+                    direction="row"
+                    justify="flex-start"
+                    alignItems="center"
+                  >
+                    <Heading>Address information</Heading>
+                  </Grid>
+                  <Grid container item direction="row"
+                    justify="flex-start"
+                    alignItems="center">                    
+                      <CustomDetails label="Street No. & Street" value={formValue.street}/>                 
+                    <CustomDetails label='City' value={formValue.city}/>                  
+                  </Grid>
+                  <Grid container item direction="row"
+                    justify="center"
+                    alignItems="center">                  
+                    <CustomDetails label='State' value={formValue.state}/>                  
+                    <CustomDetails label='Postcode' value={formValue.postCode || 'N/A'}/>                   
+                  </Grid>
+                </Grid>
+                {/* description details */}
+                <Grid
+                  container
+                  item
+                  direction="column"
+                  justify="center"
+                  alignItems="center"
+                >
+                  <Grid
+                    container
+                    item
+                    direction="row"
+                    justify="flex-start"
+                    alignItems="center"
+                  >
+                    <Heading>Description information</Heading>
+                  </Grid>
+                  <Grid container item direction="row"
+                    justify="flex-start"
+                    alignItems="center">                    
+                      <CustomDetails label="Descriptiont" value={formValue.description}/>         
+                  </Grid>
+ 
+                </Grid>
+      </ContentWrapper>
     </OutterWrapper>
   </Modal>
 )}

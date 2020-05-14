@@ -51,7 +51,7 @@ function App() {
           description: Yup.string().required('*Required'),
           state: Yup.string().oneOf(['New South Wales', 'Victoria', 'Queensland', 'Western Australia', 'South Australia', 'Tasmania'], '*Invalid value').required('*Required')
         })}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={( values, { setSubmitting }) => {
           setTimeout(() => {
             setSubmitting(false);
             handleOpen();
