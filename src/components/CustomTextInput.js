@@ -11,7 +11,6 @@ const FirstNameInput = styled.input`
 `
 
 const CustomTextInput = ({label, ...props}) => {
-  console.log("CustomTextInput -> props", {...props})
   const [field, meta] = useField(props);
   return (
     <>

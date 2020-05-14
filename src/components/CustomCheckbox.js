@@ -2,7 +2,6 @@ import React  from 'react';
 import { useField} from 'formik';
 
 const CustomChecbox = ({children, ...props}) => {
-  console.log("CustomChecbox -> props", {children, ...props})
   const [field, meta] = useField(props, 'checkbox');
   return (
     <div style={{display: 'flex'}}>
